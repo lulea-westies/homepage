@@ -1,0 +1,26 @@
+locale = "sv-SE"
+label = "Svenska"
+direction = "ltr"
+weight = 1
+
+title = "Luleå Westies"
+#copyright = "Copy, _right?_ :thinking_face:"
+
+[params]
+dateFormat = "2 January 2006"
+
+mainSections = ["aktuellt"]
+# description = "My awesome website"
+
+[params.author]
+name = "Luleå Westies"
+# image = "img/author.jpg"
+headline = "West Coast Swing i Luleå"
+bio = "Lär dig dansa WCS, träffa nya människor och ha kul till fantastisk musik. Gå en kurs eller kom på socialdans – alla är välkomna."
+links = [
+    { email = "mailto:luleawesties@gmail.com" },
+    { facebook = "https://www.facebook.com/profile.php?id=61586084488800" },
+    { instagram = "https://www.instagram.com/luleawesties/" },
+    { link = "https://luleawesties.se/" },
+    { github = "https://github.com/lulea-westies" },
+]
