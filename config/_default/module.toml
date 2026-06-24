@@ -1,2 +1,8 @@
+# Ensures the site won't build if Hugo doesn't meet the minimum version
+# requirements. "extended" is required for Tailwind CSS/SCSS support.
+[hugoVersion]
+extended = true
+min = "0.162.1"
+
 [[imports]]
 path = "github.com/jpanther/congo/v2"
