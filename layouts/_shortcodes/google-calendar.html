@@ -1,0 +1,39 @@
+{{- $src := .Get "src" -}}
+{{- $title := .Get "title" | default "Google Calendar" -}}
+{{- $height := .Get "height" -}}
+{{- $mode := .Get "mode" | default "MONTH" -}}
+
+{{- /* Ensure a view mode is present in the URL; default to month view. */ -}}
+{{- if and $src (not (strings.Contains $src "mode=")) -}}
+    {{- $src = printf "%s&mode=%s" $src $mode -}}
+{{- end -}}
+
+{{- if not $src -}}
+    <div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+    <span class="pe-3 text-primary-400">
+      {{ partial "icon.html" "circle-info" }}
+    </span>
+        <span class="dark:text-neutral-300">
+      The <strong>google-calendar</strong> shortcode requires a <code>src</code> parameter.
+      Get your embed URL from Google Calendar → Settings → your calendar → <em>Integrate calendar</em> → Copy the embed URL.
+    </span>
+    </div>
+{{- else -}}
+    <div class="not-prose my-4 overflow-hidden rounded-lg border border-neutral-200 shadow-sm dark:border-neutral-700">
+        {{- if $height -}}
+            <iframe
+                    src="{{ $src | safeURL }}"
+                    title="{{ $title }}"
+                    style="width:100%;height:{{ $height }}px;border:0;overflow:hidden;display:block;"
+                    loading="lazy"
+            ></iframe>
+        {{- else -}}
+            <iframe
+                    src="{{ $src | safeURL }}"
+                    title="{{ $title }}"
+                    style="width:100%;min-height:clamp(550px, 85vh, 800px);border:0;overflow:hidden;display:block;"
+                    loading="lazy"
+            ></iframe>
+        {{- end -}}
+    </div>
+{{- end -}}
