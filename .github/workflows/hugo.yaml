@@ -1,43 +1,56 @@
+# Builds the Hugo site and publishes it to GitHub Pages.
+# Flow: code is pushed to `main` -> Hugo builds the site into ./public
+#       -> the built files are pushed to the `gh-pages` branch
+#       -> GitHub Pages serves that branch as the live website.
 name: GitHub Pages
 
+# When should this workflow run?
 on:
   push:
     branches:
-      - main
-  workflow_dispatch: # allows manual trigger from GitHub UI
+      - main # run automatically on every push/merge to the main branch
+  workflow_dispatch: # also lets you start it by hand from the GitHub "Actions" tab
 
-# Default the whole workflow to read-only (least privilege)
 permissions:
   contents: read
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    # Elevate only this job: pushing to the gh-pages branch needs write
+
     permissions:
       contents: write
+
+    # If you push again while a run is still going, cancel the old run so
+    # only the newest commit gets deployed (avoids out-of-order deploys).
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true # cancels outdated runs if you push again quickly
+      cancel-in-progress: true
 
     steps:
+      # 1. Download your repository's source code onto the runner.
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Required for .GitInfo / .Lastmod
+          fetch-depth: 0
 
-      # Required: the Congo theme is a Hugo Module fetched via Go
+      # 2. Install Go. Needed because the Congo theme is a Hugo Module,
+      #    which Hugo downloads using Go.
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod # keeps CI in sync with go.mod (go 1.25.5)
+          # Use the exact Go version declared in go.mod so CI matches local.
+          go-version-file: go.mod
 
+      # 3. Install Hugo (the "extended" edition, required by the Congo theme).
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.162.1" # pinned for reproducible builds
+          hugo-version: "0.162.1"
           extended: true
 
+      # 4. Reuse Hugo's cache (processed images, etc.) from previous runs
+      #    to make builds faster. The cache key changes when go.sum changes.
       - name: Cache Hugo modules
         uses: actions/cache@v4
         with:
@@ -45,20 +58,20 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('go.sum') }}
           restore-keys: ${{ runner.os }}-hugomod-
 
+      # 5. Build the static site into the ./public folder.
       - name: Build
-        # Project page is served under /homepage/, so override baseURL.
-        # Remove this --baseURL flag once a custom domain is configured.
-        # --cacheDir must match the path in the "Cache Hugo modules" step.
         run: hugo --gc --minify --baseURL "https://lulea-westies.github.io/homepage/" --cacheDir /home/runner/.cache/hugo_cache
         env:
           HUGO_ENVIRONMENT: production
-          TZ: Europe/Stockholm # Luleå = Stockholm time
+          TZ: Europe/Stockholm
 
+      # 6. Publish: push the contents of ./public to the gh-pages branch.
+      #    GitHub Pages then serves that branch as the live site.
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./public
+          github_token: ${{ secrets.GITHUB_TOKEN }} # auto-provided; no setup needed
+          publish_branch: gh-pages # the branch that holds the built site
+          publish_dir: ./public # the folder Hugo built (what gets published)
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
