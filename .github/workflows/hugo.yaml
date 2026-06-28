@@ -4,41 +4,38 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch: # allows manual trigger from GitHub UI
 
-# Allow the workflow to deploy to GitHub Pages
+# Default the whole workflow to read-only (least privilege)
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment, don't cancel in-progress production deploys
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
-    env:
-      HUGO_ENVIRONMENT: production
-      TZ: Europe/Stockholm
+    # Elevate only this job: pushing to the gh-pages branch needs write
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true # cancels outdated runs if you push again quickly
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Required for .GitInfo / .Lastmod
 
-      # Hugo Modules (the Congo theme) are fetched via Go, so Go must be present
+      # Required: the Congo theme is a Hugo Module fetched via Go
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: "stable"
+          go-version-file: go.mod # keeps CI in sync with go.mod (go 1.25.5)
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "latest"
+          hugo-version: "0.162.1" # pinned for reproducible builds
           extended: true
 
       - name: Cache Hugo modules
@@ -48,25 +45,20 @@ jobs:
           key: ${{ runner.os }}-hugomod-${{ hashFiles('go.sum') }}
           restore-keys: ${{ runner.os }}-hugomod-
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
       - name: Build
-        run: hugo --gc --minify
+        # Project page is served under /homepage/, so override baseURL.
+        # Remove this --baseURL flag once a custom domain is configured.
+        # --cacheDir must match the path in the "Cache Hugo modules" step.
+        run: hugo --gc --minify --baseURL "https://lulea-westies.github.io/homepage/" --cacheDir /home/runner/.cache/hugo_cache
+        env:
+          HUGO_ENVIRONMENT: production
+          TZ: Europe/Stockholm # Luleå = Stockholm time
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./public
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
