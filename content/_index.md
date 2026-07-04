@@ -4,12 +4,17 @@ description: "Luleå Westies – West Coast Swing dansklasser, socialdans och ev
 layout: "page"
 ---
 
-{{< lead >}} Lär dig dansa West Coast Swing, träffa nya människor och ha roligt till fantastisk musik. Gå en kurs eller kom på socialdans - hos oss är alla välkomna. {{< /lead >}}
+![Luleå Westies](hero-image.png)
 
-{{< button href="/homepage/kurser/" target="_self" >}}
-Anmäl dig till en kurs
-{{< /button >}}
+{{< lead >}}
+Lär dig dansa West Coast Swing, träffa nya människor och ha roligt till fantastisk musik. Gå en kurs eller kom på socialdans - hos oss är alla välkomna.
+{{< /lead >}}
 
-{{< button href="/homepage/aktuellt/" target="_self" >}}
-Kommande evenemang
-{{< /button >}}
+## Ny på dansgolvet?
+
+[Anmäl dig till nästa kurs](homepage/kurser/) och kom igång med West Coast Swing.
+
+## Vill du börja dansa direkt?
+
+Se våra [kommande evenemang](/homepage/aktuellt/) och vad som händer framöver.
+
