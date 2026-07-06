@@ -60,7 +60,7 @@ jobs:
 
       # 5. Build the static site into the ./public folder.
       - name: Build
-        run: hugo --gc --minify --baseURL "https://lulea-westies.github.io/homepage/" --cacheDir /home/runner/.cache/hugo_cache
+        run: hugo --gc --minify --cacheDir /home/runner/.cache/hugo_cache
         env:
           HUGO_ENVIRONMENT: production
           TZ: Europe/Stockholm
