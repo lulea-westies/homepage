@@ -12,9 +12,9 @@ Lär dig dansa West Coast Swing, träffa nya människor och ha roligt till fanta
 
 ## Ny på dansgolvet?
 
-[Anmäl dig till nästa kurs](homepage/kurser/) och kom igång med West Coast Swing.
+[Anmäl dig till nästa kurs](/kurser/) och kom igång med West Coast Swing.
 
 ## Vill du börja dansa direkt?
 
-Se våra [kommande evenemang](/homepage/aktuellt/) och vad som händer framöver.
+Se våra [kommande evenemang](/aktuellt/) och vad som händer framöver.
 
