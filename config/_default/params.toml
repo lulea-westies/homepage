@@ -77,9 +77,9 @@ showTermCount = true
 # event = ""
 # script = ""
 
-#[umamiAnalytics]
-#  site = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-#  region = "eu"  # can be either "eu" or "us"
+[umamiAnalytics]
+  site = "abe3be27-42f9-4d6d-ba02-712cbb39fbc7"
+  region = "eu"  # can be either "eu" or "us"
 
 [verification]
 # google = ""
