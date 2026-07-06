@@ -2,7 +2,7 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://jpanther.github.io/congo/docs/getting-started/
 
-baseURL = "https://lulea-westies.github.io/homepage/"
+baseURL = "https://luleawesties.se/homepage/"
 defaultContentLanguage = "sv"
 
 enableRobotsTXT = true
