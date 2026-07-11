@@ -17,6 +17,14 @@ Du bör ha gått minst en grundkurs för att delta.
 
 ---
 
+### Plats
+
+**Bergnäsgården**
+Västra Solgatan 14, 97253 Luleå, Sweden
+
+[Visa på Google Maps](https://maps.app.goo.gl/T6FTPmoTc8rfM2qY7?g_st=ic)
+
+
 ### Pris
 
 | Kategori | Pris |
