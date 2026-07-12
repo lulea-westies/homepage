@@ -1,6 +1,7 @@
 ---
 title: "2026-11-14 WCS Workshophelg med Viktoria och Robin"
 description: "Helgworkshop i West Coast Swing med Viktoria och Robin från Westie Vision, 14–15 november i Luleå. Från basics till kreativitet och flow."
+layout: "simple"
 date: 2026-07-11
 ---
 
@@ -8,14 +9,12 @@ date: 2026-07-11
 
 Lör–sön **14–15 november** kommer Viktoria och Robin till Luleå för att hålla workshops med temat:
 
-> **Från Basics till kreativitet och flow**
+> **Från Basics till kreativitet och flow:**
 > Vi utforskar variationer, styling och förlängningar med utgångspunkt i dina basics.
 
 Du bör ha gått minst en grundkurs för att delta.
 
 **Kursen är 2 dagar, kl. 11–16, inkl. 1 timme lunchpaus.**
-
----
 
 ### Plats
 
@@ -23,8 +22,6 @@ Du bör ha gått minst en grundkurs för att delta.
 Västra Solgatan 14, 97253 Luleå, Sweden
 
 [Visa på Google Maps](https://maps.app.goo.gl/T6FTPmoTc8rfM2qY7?g_st=ic)
-
----
 
 ### Pris
 
@@ -36,15 +33,11 @@ Västra Solgatan 14, 97253 Luleå, Sweden
 
 I kursavgiften ingår även socialdans på lördag kväll (se separat event).
 
----
-
 ### Anmälan
 
 Anmälan öppnar **torsdag 17 juli kl. 18.00** via Onbeat:
 
 [onbeat.dance/club/lulea-westies](https://onbeat.dance/lulea-westies/viktoria-robbin-helgkurs)
-
----
 
 ### Antagning
 
@@ -55,13 +48,9 @@ Antagningen sker enligt principen **"först till kvarn"**, vilket innebär att p
 - Vid **paranmälan** antas båda deltagarna samtidigt.
 - **Singelanmälningar** matchas i turordning med nästa singelanmälan med motsatt dansroll innan de antas.
 
----
-
 ### Övrig information
 
 Det finns mikro i lokalen om ni vill ta med egen mat att äta mellan dagens workshop eller mellan workshop och socialen. Det finns även matbutik och restaurang i närområdet.
-
----
 
 ### Om instruktörerna
 
