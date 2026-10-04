@@ -9,13 +9,13 @@ våra stadgar och vår uppförandekod.
 
 ## Styrelsen
 
-| Roll        | Namn |
-|-------------|------|
-| Ordförande  |      |
-| Kassör      |      |
-| Sekreterare |      |
-| Ledamot     |      |
-| Ledamot     |      |
+| Roll            | Namn            |
+|-----------------|-----------------|
+| Ordförande      | Stefan Risberg  |
+| Vice ordförande | Madelen Nilsson |
+| Kassör          | Lina Schöning   |
+| Sekreterare     | Sara Ejnestrand |
+| Ledamot         | Péter Bartyik   |
 
 **Kontakta Luleå Westies:**  [luleawesties@gmail.com](mailto:luleawesties@gmail.com)
 
